@@ -5,6 +5,18 @@
 <sqlMapConfig>
     <!-- 引用jdbc属性的配置文件 -->
     <properties resource="SqlMap.properties" />
+
+    <settings
+            cacheModelsEnabled="true"
+            enhancementEnabled="true"
+            lazyLoadingEnabled="true"
+            errorTracingEnabled="true"
+            maxRequests="32"
+            maxSessions="10"
+            maxTransactions="5"
+            useStatementNamespaces="false"
+    />
+
     <!-- 使用jdbc的事务管理 -->
     <transactionManager type="JDBC">
         <dataSource type="SIMPLE">
