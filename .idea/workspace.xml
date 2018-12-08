@@ -61,8 +61,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="288">
-                <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <first_editor relative-caret-position="352">
+                <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -914,7 +914,7 @@
       <updated>1544250574905</updated>
       <workItem from="1544250592264" duration="2316000" />
       <workItem from="1544253495737" duration="6787000" />
-      <workItem from="1544261429068" duration="2669000" />
+      <workItem from="1544261429068" duration="2746000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1544261895120</created>
@@ -958,11 +958,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544263962745</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="用ibatis-sqlmap替换本地jar依赖">
+      <created>1544264110657</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544264110657</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11772000" />
+    <option name="totallyTimeSpent" value="11849000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
@@ -1258,8 +1265,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="288">
-            <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <first_editor relative-caret-position="352">
+            <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />

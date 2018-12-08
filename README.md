@@ -26,6 +26,23 @@ mvn install:install-file -DgroupId=com.ibatis -DartifactId=ibatis -Dversion=1.0.
 
 3.测试目的:找到一种高并发下，插入每条记录并正确返回插入记录的ID
 
+iBatis 的优缺点：
+
+优点：
+
+1、减少代码量，简单；
+
+2、性能增强；
+
+3、Sql 语句与程序代码分离；
+
+4、增强了移植性；
+
+缺点：
+
+1、和Hibernate 相比，sql 需要自己写；
+
+2、参数数量只能有一个，多个参数时不太方便；
 
 update:
 1.替换jar包：ibatis-sqlmap，能拉到依赖
