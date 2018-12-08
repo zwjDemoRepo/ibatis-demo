@@ -21,7 +21,7 @@ public class TestStudentDAO {
     private StudentDaoImpl studentDao;
 
     @Test
-    public void test_query(){
+    public void test_query_by_id(){
         System.out.println(studentDao.selectStudentById(13));
     }
 
@@ -65,6 +65,4 @@ public class TestStudentDAO {
             System.out.println(student);
         }
     }
-
-
 }

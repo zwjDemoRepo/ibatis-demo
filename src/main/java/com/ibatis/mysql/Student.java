@@ -1,6 +1,7 @@
 package com.ibatis.mysql;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 /**
  * Created by Administrator on 2018/12/8 0008.
