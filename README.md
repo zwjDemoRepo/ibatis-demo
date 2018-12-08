@@ -18,3 +18,12 @@ mvn install:install-file -DgroupId=com.ibatis -DartifactId=ibatis -Dversion=1.0.
 update:
 1.替换jar包：ibatis-sqlmap，能拉到依赖
 
+2.DDL
+CREATE TABLE `tb1_student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `birth` date DEFAULT NULL,
+  `score` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8
+
