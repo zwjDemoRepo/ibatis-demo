@@ -14,6 +14,7 @@ mvn install:install-file -DgroupId=com.ibatis -DartifactId=ibatis -Dversion=1.0.
 
 3.测试目的:找到一种高并发下，插入每条记录并正确返回插入记录的ID
 
+
 update:
 1.替换jar包：ibatis-sqlmap，能拉到依赖
 
