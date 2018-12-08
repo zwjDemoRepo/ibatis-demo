@@ -6,7 +6,7 @@
     <typeAlias alias="Student" type="com.ibatis.mysql.Student"/>
     <!-- id表示select里的sql语句，resultClass表示返回结果的类型,并且格式化时间 -->
     <select id="selectAllStudent" resultClass="Student">
-        select Id,name,DATE_FORMAT(birth,'%Y-%m-%d %H:%i:%S') as birth,score from tb1_student
+        select id,name,DATE_FORMAT(birth,'%Y-%m-%d %H:%i:%S') as birth,score from tb1_student
     </select>
     <select id="selectStudentById" parameterClass="int" resultClass="Student">
         select * from tb1_student where id=#id#
