@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class TestIbatis {
     public static void main(String[] args) {
-        StudentDaoImpl studentDaoImpl=new StudentDaoImpl();
+        StudentDaoImpl studentDaoImpl= new StudentDaoImpl();
 
         //测试插入
         Student addStudent=new Student();

@@ -4,8 +4,6 @@
         "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
     <!-- 引用jdbc属性的配置文件 -->
-    <properties resource="SqlMap.properties" />
-
     <settings
             cacheModelsEnabled="true"
             enhancementEnabled="true"
@@ -16,16 +14,6 @@
             maxTransactions="5"
             useStatementNamespaces="false"
     />
-
-    <!-- 使用jdbc的事务管理 -->
-    <transactionManager type="JDBC">
-        <dataSource type="SIMPLE">
-            <property name="JDBC.Driver" value="${driver}" />
-            <property name="JDBC.ConnectionURL" value="${url}" />
-            <property name="JDBC.Username" value="${username}" />
-            <property name="JDBC.Password" value="${password}"/>
-        </dataSource>
-    </transactionManager>
     <!-- 这里可以写多个实体的映射文件 -->
-    <sqlMap resource="Student.xml" />
+    <sqlMap resource="student.xml" />
 </sqlMapConfig>

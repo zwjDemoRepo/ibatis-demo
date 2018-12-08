@@ -13,7 +13,7 @@
     </select>
     <!-- 注意这里的resultClass类型，使用Student类型取决于queryForList还是queryForObject -->
     <select id="selectStudentByName" parameterClass="String" resultClass="Student">
-        select name,birth,score from tb1_student where name like '%$name$%'
+        select * from tb1_student where name like '%$name$%'
     </select>
     <insert id="addStudent" parameterClass="Student">
         insert into tb1_student (name,birth,score) values (#name#,#birth#,#score#)

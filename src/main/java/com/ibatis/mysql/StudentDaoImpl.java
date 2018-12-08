@@ -1,29 +1,26 @@
 package com.ibatis.mysql;
 
-import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
-import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.Reader;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/12/8 0008.
  */
-public class StudentDaoImpl implements IStudentDao {
-    private static SqlMapClient sqlMapClient = null;
+@Component
+public class StudentDaoImpl extends SqlMapClientDaoSupport implements IStudentDao {
 
-    // 读取配置文件
-    static {
-        try {
-            Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-            sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Resource(name = "sqlMapClient")
+    private SqlMapClient sqlMapClient;
+
+    @PostConstruct
+    public void initSqlMapClient(){
+        super.setSqlMapClient(sqlMapClient);
     }
 
     public boolean addStudent(Student student) {
