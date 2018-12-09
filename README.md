@@ -4,8 +4,7 @@
  iBatis 是apache 的一个开源项目，一个O/R Mapping 解决方案，iBatis 最大的特点就是小巧，上手很快。如果不需要太多复杂的功能，iBatis 是能够满足你的要求又足够灵活的最简单的解决方案，现在的iBatis 已经改名为Mybatis 了。
  
  官网为：http://www.mybatis.org/
- 
-  
+
  
  搭建iBatis 开发环境：
  
@@ -44,11 +43,12 @@ iBatis 的优缺点：
 
 2、参数数量只能有一个，多个参数时不太方便；
 
-update:
+###update:
 1.替换jar包：ibatis-sqlmap，能拉到依赖
 
 2.DDL
-CREATE TABLE `tb1_student` (
+
+CREATE TABLE `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `birth` date DEFAULT NULL,
@@ -56,3 +56,63 @@ CREATE TABLE `tb1_student` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8
 
+CREATE TABLE `account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `enabled` varchar(45) NOT NULL,
+  `pid` varchar(45) DEFAULT NULL,
+  `ptype` varchar(45) DEFAULT NULL,
+  `source` varchar(45) DEFAULT NULL,
+  `partion_kay` int(11) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `update_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_PID_PTYPE_SOURCE` (`name`,`ptype`,`source`,`pid`),
+  KEY `IDX_UPT` (`update_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+###ibatis,sqlmap,namespace
+如何启用namespace？
+配置方式:
+在sqlmap-config.xml文件中增加如下配置项
+<setting useStatementNamespaces="true"/>
+在xxxxx-sqlmap.xml文件中增加如下配置即可
+<sqlMap namespace="xxxxxx">
+
+遇到的问题？
+使用namespace后：
+<sqlMap namespace="hivestore">
+<select id="insert" ........
+<select id="column.insert".
+方法一：.getSqlMapClientTemplate().insert("hivestore.insert", hivestore);   运行成功
+方法二：this.getSqlMapClientTemplate().insert("hivestore.column.insert", hivestoreColumn);  运行出错
+为什么我启用了namespce后，第二个方法却报名了名为hivestore.column.insert的sqlstatement找不到？
+
+细节点：关于方法二为什么报错的原因
+首先ibatis启动加载配置文件：与报错相关部分代码如下
+1.SqlMapParse.java                                                                                                                                                                                                                                                                                            
+parser.addNodelet("/sqlMap/select", new Nodelet() {
+      public void process(Node node) throws Exception {
+        statementParser.parseGeneralStatement(node, new SelectStatement());
+      }
+    });
+
+2.SqlMapStatementParser.java
+相关方法：
+public void parseGeneralStatement(Node node, MappedStatement statement){}
+关键行：
+if (state.isUseStatementNamespaces()) {
+   id = state.applyNamespace(id);
+}
+默认值：
+private boolean useStatementNamespaces = false;
+
+3.细节点：
+  public String applyNamespace(String id) {
+    String newId = id;
+    if (namespace != null && namespace.length() > 0 && id != null && id.indexOf('.') < 0) {
+      newId = namespace + "." + id;
+    }
+    return newId;
+  }
+indexOf导致了方法二出错。

@@ -1,4 +1,6 @@
-package com.ibatis.mysql;
+package com.ibatis.mysql.dao;
+
+import com.ibatis.mysql.entity.Student;
 
 import java.util.List;
 

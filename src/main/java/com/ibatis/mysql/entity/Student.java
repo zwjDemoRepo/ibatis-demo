@@ -1,4 +1,4 @@
-package com.ibatis.mysql;
+package com.ibatis.mysql.entity;
 
 
 import java.sql.Date;
@@ -6,7 +6,7 @@ import java.sql.Date;
 /**
  * Created by Administrator on 2018/12/8 0008.
  */
-public class Student {
+public class Student extends BaseEntity{
     private int id;
     private String name;
     private Date birth;

@@ -1,5 +1,5 @@
-import com.ibatis.mysql.Student;
-import com.ibatis.mysql.StudentDaoImpl;
+import com.ibatis.mysql.entity.Student;
+import com.ibatis.mysql.dao.impl.StudentDaoImpl;
 
 import java.sql.Date;
 import java.util.List;

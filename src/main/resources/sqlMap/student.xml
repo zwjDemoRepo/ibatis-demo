@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap>
+<sqlMap namespace="student">
     <!-- 通过typeAlias使得我们在下面使用Student实体类的时候不需要写包名 -->
-    <typeAlias alias="Student" type="com.ibatis.mysql.Student"/>
+    <typeAlias alias="Student" type="com.ibatis.mysql.entity.Student"/>
     <!-- id表示select里的sql语句，resultClass表示返回结果的类型,并且格式化时间 -->
     <select id="selectAllStudent" resultClass="Student">
-        select id,name,DATE_FORMAT(birth,'%Y-%m-%d %H:%i:%S') as birth,score from tb1_student
+        select id,name,DATE_FORMAT(birth,'%Y-%m-%d %H:%i:%S') as birth,score from student
     </select>
     <select id="selectStudentById" parameterClass="int" resultClass="Student">
-        select * from tb1_student where id=#id#
+        select * from student where id=#id#
     </select>
     <!-- 注意这里的resultClass类型，使用Student类型取决于queryForList还是queryForObject -->
     <select id="selectStudentByName" parameterClass="String" resultClass="Student">
-        select * from tb1_student where name like '%$name$%'
+        select * from student where name like '%$name$%'
     </select>
     <insert id="addStudent" parameterClass="Student">
-        insert into tb1_student (name,birth,score) values (#name#,#birth#,#score#)
+        insert into student (name,birth,score) values (#name#,#birth#,#score#)
         <selectKey resultClass="int" keyProperty="id">
             select @@identity as inserted
         </selectKey>
     </insert>
     <delete id="deleteStudentById" parameterClass="int">
-        delete from tb1_student where id=#id#
+        delete from student where id=#id#
     </delete>
     <update id="updateStudent" parameterClass="Student">
-        update tb1_student set name=#name#,birth=#birth#,score=#score# where id=#id#
+        update student set name=#name#,birth=#birth#,score=#score# where id=#id#
     </update>
 </sqlMap>
