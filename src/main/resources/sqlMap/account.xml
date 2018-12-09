@@ -2,29 +2,95 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="account">
-    <!-- 通过typeAlias使得我们在下面使用Student实体类的时候不需要写包名 -->
-    <typeAlias alias="Student" type="com.ibatis.mysql.entity.Student"/>
+
+    <!--按照对象更新-->
+    <typeAlias alias="Account" type="com.ibatis.mysql.entity.Account"/>
+
+    <!--查询结果映射-->
+    <resultMap id="AccResult" class="com.ibatis.mysql.entity.Account">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="pid" column="pid"/>
+        <result property="ptype" column="ptype"/>
+        <result property="version" column="version"/>
+        <result property="source" column="source"/>
+        <result property="partionKey" column="partion_Key"/>
+        <result property="enabled" column="enabled"/>
+    </resultMap>
+
+
+
     <!-- id表示select里的sql语句，resultClass表示返回结果的类型,并且格式化时间 -->
-    <select id="selectAllStudent" resultClass="Student">
-        select id,name,DATE_FORMAT(birth,'%Y-%m-%d %H:%i:%S') as birth,score from student
+    <select id="selectAllAccount" resultMap="AccResult">
+        select * from account;
     </select>
-    <select id="selectStudentById" parameterClass="int" resultClass="Student">
-        select * from student where id=#id#
+    <select id="selectAccountById" parameterClass="int" resultMap="AccResult">
+        select * from account where id=#id#
     </select>
-    <!-- 注意这里的resultClass类型，使用Student类型取决于queryForList还是queryForObject -->
-    <select id="selectStudentByName" parameterClass="String" resultClass="Student">
-        select * from student where name like '%$name$%'
+    <!-- 注意这里的resultClass类型，使用Account类型取决于queryForList还是queryForObject -->
+    <select id="selectAccountByName" parameterClass="string" resultMap="AccResult">
+        select * from account where name like '%$name$%'
     </select>
-    <insert id="addStudent" parameterClass="Student">
-        insert into student (name,birth,score) values (#name#,#birth#,#score#)
+    <insert id="addAccount" parameterClass="Account">
+        insert into account
+        (create_time,update_time,name,enabled,pid,ptype,source,partion_key,version)
+        values
+        (now(),now(),#name#,'0',#pid#,#ptype#,#source#,#partionKey#,0)
         <selectKey resultClass="int" keyProperty="id">
             select @@identity as inserted
         </selectKey>
     </insert>
-    <delete id="deleteStudentById" parameterClass="int">
-        delete from student where id=#id#
+    <delete id="deleteAccountById" parameterClass="int">
+        delete from account where id=#id#
     </delete>
-    <update id="updateStudent" parameterClass="Student">
-        update student set name=#name#,birth=#birth#,score=#score# where id=#id#
+    <update id="updateAccount" parameterClass="Account">
+        update account set
+        <isNotEmpty>
+          name = #name#,
+        </isNotEmpty>
+        <isNotEmpty>
+          enabled = #enabled#,
+        </isNotEmpty>
+        <isNotEmpty>
+            pid = #pid#,
+        </isNotEmpty>
+        <isNotEmpty>
+            ptype = #ptype#,
+        </isNotEmpty>
+        <isNotEmpty>
+            source =#source#,
+        </isNotEmpty>
+        <isNotEmpty>
+            partion_key = #partionKey#,
+        </isNotEmpty>
+        update_time = now(),
+        version = version +1
+        where id=#id#
+    </update>
+    <update id="updateAccountByMap" parameterClass="map">
+        update account set
+        <isNotEmpty>
+            name = #name#,
+        </isNotEmpty>
+        <isNotEmpty>
+            enabled = #enabled#,
+        </isNotEmpty>
+        <isNotEmpty>
+            pid = #pid#,
+        </isNotEmpty>
+        <isNotEmpty>
+            ptype = #ptype#,
+        </isNotEmpty>
+        <isNotEmpty>
+            source =#source#,
+        </isNotEmpty>
+        <isNotEmpty>
+            partion_key = #partionKey#,
+        </isNotEmpty>
+        update_time = now(),
+        version = version +1
+        where id=#id#
     </update>
 </sqlMap>

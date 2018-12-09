@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2018/12/9 0009.
  */
-public abstract class AbstractDAO<T extends BaseEntity> extends SqlMapClientDaoSupport{
+public abstract class AbstractDao<T extends BaseEntity> extends SqlMapClientDaoSupport{
     @Resource(name = "sqlMapClient")
     private SqlMapClient sqlMapClient;
 
@@ -20,8 +20,8 @@ public abstract class AbstractDAO<T extends BaseEntity> extends SqlMapClientDaoS
         super.setSqlMapClient(sqlMapClient);
     }
 
-    protected Object insert(String sqlId,T t){
-        return getSqlMapClientTemplate().insert(getFullSql(sqlId),t);
+    protected Integer insert(String sqlId,T t){
+        return (Integer)getSqlMapClientTemplate().insert(getFullSql(sqlId),t);
     }
 
     protected int delete(String sqlId, int id){

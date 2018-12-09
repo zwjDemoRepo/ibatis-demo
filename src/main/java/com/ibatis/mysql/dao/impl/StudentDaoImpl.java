@@ -1,6 +1,6 @@
 package com.ibatis.mysql.dao.impl;
 
-import com.ibatis.mysql.dao.AbstractDAO;
+import com.ibatis.mysql.dao.AbstractDao;
 import com.ibatis.mysql.dao.IStudentDao;
 import com.ibatis.mysql.entity.Student;
 import org.springframework.dao.DataAccessException;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2018/12/8 0008.
  */
 @Component
-public class StudentDaoImpl extends AbstractDAO<Student> implements IStudentDao {
+public class StudentDaoImpl extends AbstractDao<Student> implements IStudentDao {
 
     @Transactional(rollbackFor = Exception.class)
     public boolean addStudent(Student student) {
