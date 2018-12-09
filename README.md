@@ -324,6 +324,7 @@ INTEGER，NULL，NUMERIC，TIME，TIMESTAMP 和 VARCHAR 等。
 
 本人认为：尽量避免在每个入参后面附加参数的类型。以保持配置简洁，并且本人在长期开发中，没有发现必须要那么做。
 
+https://www.w3cschool.cn/ibatis/ty1d1rlc.html
 
 UK 异常
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '王五-DL001-后台-p123' for key 'UK_PID_PTYPE_SOURCE'
@@ -346,3 +347,5 @@ createTime=2018-12-09 18:32:50.0,   updateTime=2018-12-09T18:32:50.000+08:00,
 java.util.Date 转 String
 ###updateTime=2018-12-09 18:32:50 
 name='王五', enabled='0', pid='p123', ptype='DL002', source='后台', partionKey=201812, version=0}
+
+

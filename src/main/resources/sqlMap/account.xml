@@ -5,7 +5,7 @@
 
     <!--按照对象更新-->
     <typeAlias alias="Account" type="com.ibatis.mysql.entity.Account"/>
-
+    <typeAlias alias="parameterMap" type="com.ibatis.mysql.util.ParameterMap" />
     <!--查询结果映射-->
     <resultMap id="AccResult" class="com.ibatis.mysql.entity.Account">
         <result property="id" column="id"/>
