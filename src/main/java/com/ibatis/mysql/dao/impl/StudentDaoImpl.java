@@ -5,6 +5,7 @@ import com.ibatis.mysql.dao.IStudentDao;
 import com.ibatis.mysql.entity.Student;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Component
 public class StudentDaoImpl extends AbstractDAO<Student> implements IStudentDao {
 
+    @Transactional(rollbackFor = Exception.class)
     public boolean addStudent(Student student) {
         Object object = null;
         boolean flag = false;
@@ -29,6 +31,7 @@ public class StudentDaoImpl extends AbstractDAO<Student> implements IStudentDao 
         return flag;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public boolean deleteStudentById(int id) {
         boolean flag = false;
         Object object = null;
@@ -45,6 +48,7 @@ public class StudentDaoImpl extends AbstractDAO<Student> implements IStudentDao 
         return flag;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public boolean updateStudent(Student student) {
         boolean flag = false;
         Object object = false;
