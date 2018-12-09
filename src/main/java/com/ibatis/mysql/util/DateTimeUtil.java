@@ -1,6 +1,11 @@
 package com.ibatis.mysql.util;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,9 +16,18 @@ import java.util.Date;
 public final class DateTimeUtil {
     private DateTimeUtil() {
     }
-
+    public static String getFormatTime(String format, java.util.Date datetime) {
+        String value = null;
+        DateFormat dateFormat = new SimpleDateFormat(format);
+        value =dateFormat.format(datetime);
+        return value;
+    }
 
     public static void main(String[] args) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTime d3 = DateTime.parse("2016-10-10 11:12:55", formatter);
+
+
         Date date=new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String date1=sdf.format(date);
@@ -23,6 +37,8 @@ public final class DateTimeUtil {
 
         testData();
     }
+
+
 
     /**
      * 直接将当前时间只按日期(时间为0)作为mysql时间戳字段的条件

@@ -22,4 +22,9 @@ public class TestAccountDAO {
         Integer result = accountDao.addAcc(accAdd);
         System.out.println(result);
     }
+
+    @Test
+    public void test_query_acc(){
+        System.out.println(accountDao.selectAccById(3));
+    }
 }

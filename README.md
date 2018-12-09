@@ -58,18 +58,19 @@ CREATE TABLE `student` (
 
 CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
   `name` varchar(45) NOT NULL,
   `enabled` varchar(45) NOT NULL,
-  `pid` varchar(45) DEFAULT NULL,
-  `ptype` varchar(45) DEFAULT NULL,
-  `source` varchar(45) DEFAULT NULL,
-  `partion_kay` int(11) DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT NULL,
+  `pid` varchar(45) NOT NULL,
+  `ptype` varchar(45) NOT NULL,
+  `source` varchar(45) NOT NULL,
+  `partion_key` int(11) DEFAULT NULL,
+  `version` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_PID_PTYPE_SOURCE` (`name`,`ptype`,`source`,`pid`),
   KEY `IDX_UPT` (`update_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8
 
 ###ibatis,sqlmap,namespace
 如何启用namespace？
@@ -326,3 +327,22 @@ INTEGER，NULL，NUMERIC，TIME，TIMESTAMP 和 VARCHAR 等。
 
 UK 异常
 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '王五-DL001-后台-p123' for key 'UK_PID_PTYPE_SOURCE'
+
+https://www.cnblogs.com/ThinkVenus/p/8042516.html
+
+
+##时间处理思路：
+数据库 datetime
+java bean 时间属性 java.util.Date
+
+get取用的时候得到的都是转换后的String,时间格式 yyyy-MM-dd HH:mm:ss;
+
+Account{id=3,
+###java.sql.Date
+createTime=2018-12-09
+
+###java.sql.Timestamp;
+createTime=2018-12-09 18:32:50.0,   updateTime=2018-12-09T18:32:50.000+08:00,
+java.util.Date 转 String
+###updateTime=2018-12-09 18:32:50 
+name='王五', enabled='0', pid='p123', ptype='DL002', source='后台', partionKey=201812, version=0}

@@ -1,5 +1,9 @@
 package com.ibatis.mysql.entity;
 
+import org.joda.time.DateTime;
+
+import static com.ibatis.mysql.util.DateTimeUtil.getFormatTime;
+
 public class Account extends BaseEntity{
 
     private Integer id;
@@ -129,5 +133,22 @@ public class Account extends BaseEntity{
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ",createTime=" + getCreateTime() +
+                ",updateTime=" + new DateTime(getUpdateTime()) +
+                ",updateTime=" + getFormatTime("yyyy-MM-dd HH:mm:ss",getUpdateTime()) +
+                ", name='" + name + '\'' +
+                ", enabled='" + enabled + '\'' +
+                ", pid='" + pid + '\'' +
+                ", ptype='" + ptype + '\'' +
+                ", source='" + source + '\'' +
+                ", partionKey=" + partionKey +
+                ", version=" + version +
+                '}';
     }
 }

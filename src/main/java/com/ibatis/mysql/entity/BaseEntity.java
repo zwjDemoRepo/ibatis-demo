@@ -1,5 +1,6 @@
 package com.ibatis.mysql.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -7,21 +8,22 @@ import java.util.Date;
  */
 public class BaseEntity{
 
-    private Date createTime;
+    private Timestamp createTime;
 
-    private Date updateTime;
-
+//    private Date updateTime;
+//    private DateTime updateTime;
+      private Date updateTime;
     /**
      * @return create_time
      */
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
     /**
      * @param createTime
      */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

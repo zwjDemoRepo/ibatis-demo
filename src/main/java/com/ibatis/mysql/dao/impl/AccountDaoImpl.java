@@ -33,7 +33,7 @@ public class AccountDaoImpl extends AbstractDao<Account> implements IAccountDao 
     }
 
     public Account selectAccById(int id) {
-        return null;
+        return super.queryById("selectAccountById",id);
     }
 
     protected String namespace() {
