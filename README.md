@@ -350,4 +350,5 @@ name='王五', enabled='0', pid='p123', ptype='DL002', source='后台', partionK
 ##tostring()
 org.apache.commons.lang.builder.ReflectionToStringBuilder
 ReflectionToStringBuilder.toString(this)
-
+<sql>标签用来包含和重命名表字段和bean字段对应，
+ <select>标签中通过<include>标签来引用
