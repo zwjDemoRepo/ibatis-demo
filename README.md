@@ -347,5 +347,7 @@ createTime=2018-12-09 18:32:50.0,   updateTime=2018-12-09T18:32:50.000+08:00,
 java.util.Date 转 String
 ###updateTime=2018-12-09 18:32:50 
 name='王五', enabled='0', pid='p123', ptype='DL002', source='后台', partionKey=201812, version=0}
-
+##tostring()
+org.apache.commons.lang.builder.ReflectionToStringBuilder
+ReflectionToStringBuilder.toString(this)
 
